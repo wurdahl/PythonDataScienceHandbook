@@ -1,0 +1,14 @@
+1.00
+	Jupyter Notebook is a special case of the iPython interpreter
+
+1.01 Help and Documentation
+	Single Question Mark
+		Shorthand for accessing the documentation string for a function or variable
+		works for pretty much everything
+		create a doc string for a function by putting a tripple quote string in the first line
+	Double question mark
+		see the source code of the object on question
+		if source code is in another language, it will return the same as a single question mark.
+	Tab-Completion
+		To see a list of all available attributes of an object, type the name of the object followed by a period and tab
+		to narrow the list, type letters 
