@@ -11,4 +11,125 @@
 		if source code is in another language, it will return the same as a single question mark.
 	Tab-Completion
 		To see a list of all available attributes of an object, type the name of the object followed by a period and tab
-		to narrow the list, type letters 
+		to narrow the list, type letters, then tab
+		if there is only one object, it will autocomplete it
+		* matches any string including empty string
+
+1.02 Shell Keyboard Shortcuts
+	Navigation Shortcuts
+		ctrl-a - move cursor to the beginning of the line
+		crtl-e - move cursor to the end of the line
+		crtl-b - left one char
+		ctrl-f - right one char
+	Text Entry Shortcuts
+		ctrl-d - delete next cahr in line
+		ctrl-k - cut text from cursor to end of line
+		ctrl-u - cut text from beginning of line to cursor
+		crtl-y - yank (paste) text that was previously cut
+		crtl-t - Transpose previous two char
+	Command History Shortcuts
+		crtl-p (or up arrow key) access previous command in history
+		Ctrl-n (or down arrow key) access next command in history
+		Ctrl-r Reverse-search through command history
+	Miscellaneous Shortcuts
+		Ctrl-l - clear terminal screen
+		Ctrl-c Interrupt current Python Command
+		Ctrl-d Ext IPython session
+
+1.03 Magic Commands
+	Line magics - %
+	cell magics -%%
+	
+	Pasting Code Blocks
+		%paste can be used to paste things that have the python prompt characters without causing errors
+		%cpaste - opens up an interactive multiline prompt in which 
+		you can paste one or more chunks of code to be executed in a batch
+	
+	Running External Code
+		%run can be used to run outside python files
+	
+	Timing Code Execution
+		%timeit will time how long the current line took to evaluate
+		%%timeit will time how long it took for the cell to evaluate
+	
+	%magic will show a general description of available magic functions
+	%lsmagic - quick and simple list of all available magic functions
+
+1.04 Input and Output History
+	The In object is a list which keeeps track of the command sin order
+	The out object is a dictionary mapping input nummbers to their outputs
+
+	any function that returns none is not added to Out
+
+	Underscore Shortcuts and Previous Outputs
+		_ is a variable that stores the previous output
+		IPython takes this a bit farther by making double underscore the second to last 
+		and triple the thrid to last
+	
+		A shortcut for Out[X] is _X
+	
+	Suppressing Output
+		adding a semicolon to the end of a line will suppress the output
+		Output is not stored in Out when it is suppressed by a semicolon
+
+	Related Magic Commands
+		%history can be used to access a batch of previous inputs at once
+
+		%rerun will rerun a batch of inputs
+		
+		%save will save some set of the command history to a file
+
+1.05 IPython and Shell Commands
+	Anythong appearing after an ! will be run by the system comand-line
+
+	Passing Values to and from the Shell
+		You can save the output of any shell command to a Python list
+		the result are not returned as lists but as a shell return type
+			has additionally functionality: grep, fields, s, n and p
+		
+		in the other direction, use {} around python variable to pass them into shell commands
+
+	Shell-Related Magc Commands
+		!cd does not work, you must use %cd or jus plain cd
+			just plain cd is an automagic function
+
+1.06 Errors and Debugging
+
+	Controlling Exceptions
+		%xmode = control the amount of information printed when the exception is raised
+
+		Three possibilities: Plain, Context, and Verbose
+
+	Debugging: When Reading Tracebacks is not enough
+		pdb - python debugger
+		ipdb - IPython debugger
+
+		%debug - If you call it after hitting an exception, 
+		it will automatically open an interactive debugging prompt at the point of the exception
+
+		If you'd like the debugger to launch automatically whenever an exception is raised, 
+		you can use the %pdb magic function to turn on this automatic behavior
+
+		 if you have a script that you'd like to run from the beginning in interactive mode, 
+		you can run it with the command %run -d, and use the next command to step through 
+		the lines of code interactively.
+
+1.07 Timing and profiling
+	
+	Timing Code Snippets: %timeit and %time
+		%time only executes the code once to time it
+		%timeit results are faster than %time results because Timeit discludes some time consuming stuff
+
+	Profiling Full Scripts: %prun
+		creates a table indicating where a piece of code is spending the most amount of time
+
+	Line-by_Line Profiling with %lprun
+		not built in so you have to download it with pip install line_profiler
+
+	profiling Memory Use: %memit and %mprun
+		not built in so you have to donwload it with pip install memory_profiler
+
+		%memit measure the peak memory utilization
+
+		%mprun can be used for a line by line description, but it can only be run in seperate module
+			results are printed to the pager
