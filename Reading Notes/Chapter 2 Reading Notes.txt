@@ -166,3 +166,48 @@ Chapter 2.02 The Basics of NumPy Arrays
 			np.dsplit(array, [split points]) - third axis
 		
 		n amount of split points yield n+1 arrays returned
+
+Chapter 2.03 computation on Arrays- Ufuncs
+
+	Vectorized operations in NumPy are implemented via ufuncs, whose main purpose is to quickly
+	execute repeated operations on values in NumPy arrays.
+
+	Ufuncs exist in two flavors: unary ufuncs, which operate on a single input, and binary ufuncs, which operate on two inputs.
+
+	There are specialized log and exponent functions for small numbers:
+		np.expm1()
+		np.log1p()
+
+	for ufuncs, you can specify where the output should be stored by usin ght eout augment to the function:
+		x = np.arange(5)
+		y = np.empty(5)
+		np.multiply(x, 10, out=y)
+
+	the reduce function can be used to reduce an array with a specfiic function like add.
+	If you want to store all intermediate values, you can use accumulate.
+
+	Any ufunc can compute the output of all pairs of two different inputs using the outer method.
+
+Chapter 2.04 Computation on Arrays - Aggreagtes
+
+	Aggreagte functions help you see and process the data overall by computing summary statistics.	
+
+	Aggregation functions take an additional argument specifying the axis along which the aggregate is computed.
+	For example, we can find the minimum value within each column by specifying axis=0
+	and the minimum value within each row by specifying axis=1
+
+	The axis keyword specifies the dimension of the array that will be collapsed,
+	rather than the dimension that will be returned. 
+
+Chapter 2.05 Computation on Arrays - Broadcasting
+	
+	Broadcasting is simply a set of rules for applying binary ufuncs (e.g., addition, subtraction, multiplication, etc.)
+	on arrays of different sizes.
+
+	Broadcasting in NumPy follows a strict set of rules to determine the interaction between the two arrays:
+
+		Rule 1: If the two arrays differ in their number of dimensions, the shape of the one with fewer dimensions is padded with ones on its leading (left) side.
+		Rule 2: If the shape of the two arrays does not match in any dimension, the array with shape equal to 1 in that dimension is stretched to match the other shape.
+		Rule 3: If in any dimension the sizes disagree and neither is equal to 1, an error is raised.
+
+	If right-side padding is what you'd like, you can do this explicitly by reshaping the array
