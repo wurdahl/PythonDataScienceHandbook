@@ -201,13 +201,103 @@ Chapter 2.04 Computation on Arrays - Aggreagtes
 
 Chapter 2.05 Computation on Arrays - Broadcasting
 	
-	Broadcasting is simply a set of rules for applying binary ufuncs (e.g., addition, subtraction, multiplication, etc.)
-	on arrays of different sizes.
+	Broadcasting is simply a set of rules for applying binary ufuncs (e.g., addition, subtraction,
+	multiplication, etc.) on arrays of different sizes.
 
 	Broadcasting in NumPy follows a strict set of rules to determine the interaction between the two arrays:
 
-		Rule 1: If the two arrays differ in their number of dimensions, the shape of the one with fewer dimensions is padded with ones on its leading (left) side.
-		Rule 2: If the shape of the two arrays does not match in any dimension, the array with shape equal to 1 in that dimension is stretched to match the other shape.
+		Rule 1: If the two arrays differ in their number of dimensions, the shape of the one with 
+			fewer dimensions is padded with ones on its leading (left) side.
+		Rule 2: If the shape of the two arrays does not match in any dimension, the array with shape equal 
+			to 1 in that dimension is stretched to match the other shape.
 		Rule 3: If in any dimension the sizes disagree and neither is equal to 1, an error is raised.
 
 	If right-side padding is what you'd like, you can do this explicitly by reshaping the array
+
+Chapter 2.06 Boolean Arrays and Masks
+
+	Masking comes up when you want to extract, modify, count, or otherwise manipulate values in an array
+	based on some criterion.
+
+	NumPy implements < and > as element wise operations. The result of these operations is a boolean array.
+		comparisons availiable: <,>,<=,>=,!=, and ==.
+
+	To count the number of true entries in an array, np.count_nonzero or np.sum is used. (True==1, False==0).
+
+	To check if any or all of the values are true- np.any or np.all
+		Can be used along particular axes.
+
+	Bitwise logic operators - &, |, ^, and ~.
+		example: count the number of days with rain less than 1 inch but greater than .5 inches:
+			np.sum((inches > .5) & (inches < 1))
+			np.sum(~( (inches <= 0.5) | (inches >= 1) ))
+
+	To select certain values from the array, you can index the array with the boolean array:
+		x[x<5] - will return a one-dimensional array fillled with all values that meet this condition.
+
+Chapter 2.07 Fancy Indexing
+	
+	pass an array of indices instead of a single scalar.
+
+	The shape of the result reflects teh shape of the index arrays rather
+	than the shape of the array being indexed.
+
+	Fancy indexing that the return value reflects the broadcasted shape of the indices.
+
+	Can be combined with simple indicies, slicing, and masking.
+
+	The at() method does an in-place application of the given operator at the specified indices.
+		Will not run into the problem of doing repeated things to an array index
+		and it only happening once with fancy indexing.
+
+Chapter 2.08 Sorting
+	
+	np.sort - built in sort algorithim (default - quicksort, also mergesort and heapsort)
+
+	np.argsort - returns the indicies of the sorted elements
+
+	In NumPy's sorting algorithms, you can sort along specifiv rows or columns with the axis arguement.
+	
+	np.partition takes an array and a number K; the result is a new array with the smallest K values
+	to the left of the partition, and the remaining values to the right, in arbitrary order
+		There is also a np.argpartition.
+
+	Big O notation - a general way of describing how a algorithm scales with the size of the dataset.
+
+Chapter 2.09 NumpPy's Structured Arrays
+	
+	Structured Arrays are arrays with compound Data types
+	
+	Example: 
+		
+		name = ['Alice', 'Bob', 'Cathy', 'Doug']
+		age = [25, 45, 37, 19]
+		weight = [55.0, 85.5, 68.0, 61.5]		
+
+		data = np.zeros(4, dtype={'names':('name', 'age', 'weight'),
+                          'formats':('U10', 'i4', 'f8')})
+
+		data['name'] = name
+		data['age'] = age
+		data['weight'] = weight
+
+		Result:
+			[('Alice', 25, 55.0) ('Bob', 45, 85.5) ('Cathy', 37, 68.0) ('Doug', 19, 61.5)]
+
+	You can refer to values either by index or by name.
+
+	Sophisticated operation - filtering on age;
+		data[data['age'] < 30]['name']
+
+	A compound type can also be specified as a list of tuples:
+		np.dtype([('name', 'S10'), ('age', 'i4'), ('weight', 'f8')])
+
+	If names do not matter:
+		np.dtype('S10,i4,f8')
+
+	You can create your own numPy Data types:
+		This is advantageous because dtype directly maps onto 
+		a C structure definition, which makes things faster
+
+	Record Array- fields can be accessed as attributes rather than dictionary keys.
+	
