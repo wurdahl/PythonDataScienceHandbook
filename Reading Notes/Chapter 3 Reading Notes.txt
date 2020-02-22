@@ -15,6 +15,7 @@ Chapter 3.02 Data Indexing and Selection
 	In pandas series, when slicing the python normal indicies are used (0,1,2,3...).
 	use the .loc attribute to refer to the pandas indicies.
 	use the .iloc attribute to refer to the python indicies.
+	ix is equivalent to the the standard []-based indexing.
 
 	DataFrames info:
 		we can use attribute-style access with column names that are strings
@@ -22,3 +23,13 @@ Chapter 3.02 Data Indexing and Selection
 		Like with the Series objects discussed earlier, this dictionary-style syntax can also be used to modify the object, in this case adding a new column:
 
 		data['density'] = data['pop'] / data['area']
+
+	to examine the underlying data, use data.values
+
+	Transpose data: data.T
+
+Chapter 3.03 Operations in Pandas
+	
+	
+
+	
