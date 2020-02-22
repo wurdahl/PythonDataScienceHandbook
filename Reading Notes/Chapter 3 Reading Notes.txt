@@ -1,0 +1,24 @@
+Chapter 3.01 Introducing Pandas Objects
+	The indicies for pandas series are explicit instead of implicit like NumPy.
+
+	DataFrames are 2 dimensional versions of series. There are explict column names and explict row indicies.
+	A column in a dataFrame is a pandas series or dictionary.
+
+	index objects are immutable arrays.
+		They cannot be modified in the normal ways ind[x] = value.
+		& - intersection of index objects
+		| - union of index objects
+		^ - symmetric difference
+
+Chapter 3.02 Data Indexing and Selection
+	
+	In pandas series, when slicing the python normal indicies are used (0,1,2,3...).
+	use the .loc attribute to refer to the pandas indicies.
+	use the .iloc attribute to refer to the python indicies.
+
+	DataFrames info:
+		we can use attribute-style access with column names that are strings
+
+		Like with the Series objects discussed earlier, this dictionary-style syntax can also be used to modify the object, in this case adding a new column:
+
+		data['density'] = data['pop'] / data['area']
