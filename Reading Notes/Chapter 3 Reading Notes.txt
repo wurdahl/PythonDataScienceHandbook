@@ -30,6 +30,32 @@ Chapter 3.02 Data Indexing and Selection
 
 Chapter 3.03 Operations in Pandas
 	
-	
+	If we apply a NumPy ufunc on either of these objects, the 
+	result will be another Pandas object with the indices preserved
 
+	For binary operations on two series or dataframe objects, Pandas will align indicies in the process of performing the operation.
+
+	the resulting array contains the union of indicies of the two input arrays.
+
+	Any item for which one of the other does not an entry is marked with NaN.
+
+	If you don't want to use NaN, the fill values can be modified using the appropriate object methods:
+		A.add(B, fill_value=0)
+
+	Similar alignment takes place on both columns and indices when performing operations on DataFrames.
+
+	The indicies in the result are sorted.
+
+	For dataFrames, you can specify the fill_value by using the object methods.
+
+	subtraction is applied automatically row-wise, if you want it column-wise, you can use axis:
+		
+	df.subtract(df['R'], axis=0)
+
+
+Chapter 3.04 Missing Values
+
+	Pandas chose to use sentinesl for missing data, using two already-existing Python null values:
+		None - cannot be used in any arbitrary NumPy Array, but can be used for object arrays.
+	
 	
